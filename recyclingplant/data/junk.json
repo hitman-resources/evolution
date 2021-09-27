@@ -121,6 +121,14 @@
       "action": "recycle"
     },
     {
+      "object": "Copy of HITMAN 3",
+      "action": "trash"
+    },
+    {
+      "object": "Notex",
+      "action": "trash"
+    },
+    {
       "object": "Napkins",
       "action": "trash"
     },
