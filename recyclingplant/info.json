@@ -1,0 +1,18 @@
+{
+  "author": [
+    "Bobloy",
+    "SnappyDragon",
+    "Atampy26"
+  ],
+  "min_bot_version": "3.3.0",
+  "description": "Apply for a job at the recycling plant! Sort out the garbage!",
+  "hidden": false,
+  "install_msg": "gotta recycle lmao",
+  "short": "Apply for a job at the recycling plant!",
+  "end_user_data_statement": "This cog used the core",
+  "tags": [
+    "bobloy",
+    "environment",
+    "games"
+  ]
+}
