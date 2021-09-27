@@ -79,7 +79,7 @@ class RecyclingPlant(Cog):
                         used["object"]
                     )
                 )
-                await bank.deposit_credits(ctx.author, 15)
+                await bank.deposit_credits(ctx.author, 60)
                 totalreward += 60
                 x += 1
             elif answer.content.lower().strip() == opp:
