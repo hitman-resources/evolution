@@ -86,8 +86,8 @@ class RecyclingPlant(Cog):
                 await ctx.send(
                     "no you dope"
                 )
-                await bank.deposit_credits(ctx.author, -5)
-                totalreward -= 5
+                await bank.deposit_credits(ctx.author, -15)
+                totalreward -= 15
             elif answer.content.lower().strip() == "exit":
                 await ctx.send(
                     "You have been given a total of **{} {}** for your services.".format(
