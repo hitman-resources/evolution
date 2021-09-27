@@ -38,7 +38,7 @@ class RecyclingPlant(Cog):
                 ctx.author.display_name
             )
         )
-        while x in range(0, 10):
+        while x in range(0, 500):
             used = random.choice(self.junk["can"])
             if used["action"] == "trash":
                 opp = "recycle"
