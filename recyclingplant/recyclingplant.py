@@ -31,10 +31,10 @@ class RecyclingPlant(Cog):
             self.load_junk()
 
         x = 0
-        reward = 0
+        totalreward = 0
         timeoutcount = 0
         await ctx.send(
-            "{0} has signed up for a shift at the Recycling Plant! Type `exit` to terminate it early.".format(
+            "{0} has signed up for a shift at the Recycling Plant! Type `exit` to stop working.".format(
                 ctx.author.display_name
             )
         )
@@ -61,14 +61,14 @@ class RecyclingPlant(Cog):
             if answer is None:
                 if timeoutcount == 2:
                     await ctx.send(
-                        "{} slacked off at work, so they were sacked with no pay.".format(
+                        "{} slacked off at work, so they were shot multiple times in the occipital lobe.".format(
                             ctx.author.display_name
                         )
                     )
                     break
                 else:
                     await ctx.send(
-                        "{} is slacking, and if they carry on not working, they'll be fired.".format(
+                        "{} is slacking, and if they carry on not working, they'll be executed.".format(
                             ctx.author.display_name
                         )
                     )
@@ -79,16 +79,20 @@ class RecyclingPlant(Cog):
                         used["object"]
                     )
                 )
-                reward += 15
+                await bank.deposit_credits(ctx.author, 15)
+                totalreward += 15
                 x += 1
             elif answer.content.lower().strip() == opp:
                 await ctx.send(
                     "no you dope"
                 )
-                reward -= 15
+                await bank.deposit_credits(ctx.author, -5)
+                totalreward -= 5
             elif answer.content.lower().strip() == "exit":
                 await ctx.send(
-                    "{} has been relived of their duty.".format(ctx.author.display_name)
+                    "You have been given a total of **{} {}** for your services.".format(
+                        totalreward, await bank.get_currency_name(ctx.guild)
+                    )
                 )
                 break
             else:
@@ -96,10 +100,8 @@ class RecyclingPlant(Cog):
                     "``{}`` fell down the conveyor belt to be sorted again!".format(used["object"])
                 )
         else:
-            if reward > 0:
-                await bank.deposit_credits(ctx.author, reward)
             await ctx.send(
-                "You have been given **{} {}** for your services.".format(
-                    reward, await bank.get_currency_name(ctx.guild)
+                "You have been given a total of **{} {}** for your services.".format(
+                    totalreward, await bank.get_currency_name(ctx.guild)
                 )
             )
