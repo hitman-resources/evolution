@@ -34,7 +34,7 @@ class RecyclingPlant(Cog):
         reward = 0
         timeoutcount = 0
         await ctx.send(
-            "{0} has signed up for a shift at the Recycling Plant! Type ``exit`` to terminate it early.".format(
+            "{0} has signed up for a shift at the Recycling Plant! Type `exit` to terminate it early.".format(
                 ctx.author.display_name
             )
         )
@@ -45,7 +45,7 @@ class RecyclingPlant(Cog):
             else:
                 opp = "trash"
             await ctx.send(
-                "``{}``! Will {} ``trash`` it or ``recycle`` it?".format(
+                "`{}`! Will {} `trash` it or `recycle` it?".format(
                     used["object"], ctx.author.display_name
                 )
             )
@@ -75,7 +75,7 @@ class RecyclingPlant(Cog):
                     timeoutcount += 1
             elif answer.content.lower().strip() == used["action"]:
                 await ctx.send(
-                    "Congratulations! You have the intelligence of a third grader! (**+50**)".format(
+                    "Congratulations! You have the intelligence of a third grader! (**+15**)".format(
                         used["object"]
                     )
                 )
@@ -83,11 +83,11 @@ class RecyclingPlant(Cog):
                 x += 1
             elif answer.content.lower().strip() == opp:
                 await ctx.send(
-                    "{}, you absolute idiot! I don't know why we let you work here. (**-50**)".format(
+                    "You absolute idiot! I don't know why we let you work here. (**-15**)".format(
                         ctx.author.display_name
                     )
                 )
-                reward -= 50
+                reward -= 15
             elif answer.content.lower().strip() == "exit":
                 await ctx.send(
                     "{} has been relived of their duty.".format(ctx.author.display_name)
