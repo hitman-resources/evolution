@@ -21,7 +21,7 @@ from .tasks import EvolutionTaskManager
 from .utils import EvolutionUtils
 
 from . import bank
-
+  
 ANIMALS = ["chicken", "dog", "cat", "shark", "tiger", "penguin", "pupper", "dragon"]
 
 IMAGES = {
@@ -528,7 +528,7 @@ class Evolution(commands.Cog):
         except (KeyError, AssertionError):
             return await ctx.send("You don't have any animals at that level in your stash.")
 
-        if level > int(highest) - 3 and level != 1:
+        if False:
             return await ctx.send(
                 "You are not of a required level to claim those animals from stash.  Cancelled."
             )
