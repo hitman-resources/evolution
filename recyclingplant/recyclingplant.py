@@ -97,7 +97,7 @@ class RecyclingPlant(Cog):
                 break
             else:
                 await ctx.send(
-                    "``{}`` fell down the conveyor belt to be sorted again!".format(used["object"])
+                    "`{}` fell down the conveyor belt to be sorted again!".format(used["object"])
                 )
         else:
             await ctx.send(
