@@ -154,7 +154,7 @@
     },
     {
       "object": "Styrofoam Container",
-      "action": "trash"
+      "action": "recycle"
     },
     {
       "object": "Flash Cards",
@@ -194,7 +194,7 @@
     },
     {
       "object": "Gift Wrapping",
-      "action": "trash"
+      "action": "recycle"
     },
     {
       "object": "Soda Bottle",

@@ -83,9 +83,7 @@ class RecyclingPlant(Cog):
                 x += 1
             elif answer.content.lower().strip() == opp:
                 await ctx.send(
-                    "You absolute idiot! I don't know why we let you work here. (**-15**)".format(
-                        ctx.author.display_name
-                    )
+                    "no you dope"
                 )
                 reward -= 15
             elif answer.content.lower().strip() == "exit":
