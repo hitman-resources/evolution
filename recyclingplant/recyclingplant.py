@@ -80,7 +80,7 @@ class RecyclingPlant(Cog):
                     )
                 )
                 await bank.deposit_credits(ctx.author, 15)
-                totalreward += 15
+                totalreward += 60
                 x += 1
             elif answer.content.lower().strip() == opp:
                 await ctx.send(
