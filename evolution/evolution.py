@@ -228,9 +228,6 @@ class Evolution(commands.Cog):
         if amount < 1:
             self.inmarket.remove(ctx.author.id)
             return await ctx.send("Ya cant buy a negative amount!")
-        if (level > int(highest) - 3) and (level > 1):
-            self.inmarket.remove(ctx.author.id)
-            return await ctx.send("Please get higher animals to buy higher levels of them.")
         if level > 22:
             self.inmarket.remove(ctx.author.id)
             return await ctx.send("The highest level you can buy is level 22.")
