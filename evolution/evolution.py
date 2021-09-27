@@ -21,7 +21,7 @@ from .tasks import EvolutionTaskManager
 from .utils import EvolutionUtils
 
 from . import bank
-  
+
 ANIMALS = ["chicken", "dog", "cat", "shark", "tiger", "penguin", "pupper", "dragon"]
 
 IMAGES = {
@@ -142,14 +142,13 @@ class Evolution(commands.Cog):
         async with self.lock:
             await self.conf.user(ctx.author).animal.set("P")
         await ctx.send(
-            f"Hello there.  Welcome to Evolution, where you can buy animals to earn credits for economy.  What would you like your animals to be named (singular please)?  Warning: this cannot be changed.  Here is a list of the current available ones: `{'`, `'.join(ANIMALS)}`"
+            f"Hello there.  Welcome to Evolution, where you can buy animals to earn credits for economy.  What would you like your animals to be named (singular please)?  Warning: this cannot be changed.  Here is a list of the current ones with pictures: `{'`, `'.join(ANIMALS)}`. Otherwise, just type a name."
         )
 
         def check(m):
             return (
                 (m.author.id == ctx.author.id)
                 and (m.channel.id == ctx.channel.id)
-                and (m.content.lower() in ANIMALS)
             )
 
         try:
@@ -591,7 +590,10 @@ class Evolution(commands.Cog):
                     description=f"You have {str(amount)} Level {level} {animal}{'s' if amount != 1 else ''}",
                     color=0xD2B48C,
                 )
-                embed.set_thumbnail(url=IMAGES[animal])
+                try:
+                  embed.set_thumbnail(url=IMAGES[animal])
+                except:
+                  embed.set_thumbnail(url="https://i.imgur.com/W5xExMR.jpg")
                 embed_list.append(embed)
             await menu(ctx, embed_list, DEFAULT_CONTROLS)
         else:
@@ -600,7 +602,10 @@ class Evolution(commands.Cog):
                 color=0xD2B48C,
                 description=f"Multiplier: {inline(str(multiplier))}\nMax amount of animals: {inline(str(e))}",
             )
-            embed.set_thumbnail(url=IMAGES[animal])
+            try:
+              embed.set_thumbnail(url=IMAGES[animal])
+            except:
+              embed.set_thumbnail(url="https://i.imgur.com/W5xExMR.jpg")
             animals = {k: v for k, v in sorted(animals.items(), key=lambda x: int(x[0]))}
             for level, amount in animals.items():
                 if amount == 0:
