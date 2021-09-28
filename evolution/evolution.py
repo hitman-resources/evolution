@@ -298,13 +298,16 @@ class Evolution(commands.Cog):
             )
             last = 0
             chances = []
+            avgIncome = 0
             try:
                 for chance, value in self.utils.levels[int(x)].items():
                     chances.append(f"{str(chance-last)}% chance to gain {str(value)}")
+                    avgIncome = avgIncome + ((chance-last)/100) * value
                     last = chance
             except KeyError:
                 chances = ["100% chance to gain 1000"]
             embed.add_field(name="Income", value="\n".join(chances))
+            embed.add_field(name="Income per second", value=str(round(avgIncome / self.utils.delays[int(x)], 3)))
             embed.add_field(
                 name="Credit delay",
                 value=humanize_timedelta(timedelta=timedelta(seconds=self.utils.delays[int(x)])),
