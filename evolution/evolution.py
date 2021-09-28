@@ -453,7 +453,7 @@ class Evolution(commands.Cog):
         if not ctx.invoked_subcommand:
             await ctx.invoke(self.view)
     
-    @evolution.group()
+    @evolution.command()
     async def name(self, ctx, name: str):
         """Rename your animals"""
         await self.conf.user(ctx.author).animal.set(name)
