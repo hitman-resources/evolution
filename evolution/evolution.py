@@ -452,6 +452,12 @@ class Evolution(commands.Cog):
         """Where your special animals are put if you cannot hold them in your backyard"""
         if not ctx.invoked_subcommand:
             await ctx.invoke(self.view)
+    
+    @evolution.group()
+    async def name(self, ctx, name: str):
+        """Rename your animals"""
+        await self.conf.user(ctx.author).animal.set(name)
+        await ctx.send(f"Your animals are now called {name}s.")
 
     @stash.command()
     async def view(self, ctx):
