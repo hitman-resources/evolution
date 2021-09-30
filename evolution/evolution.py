@@ -458,6 +458,27 @@ class Evolution(commands.Cog):
         """Rename your animals"""
         await self.conf.user(ctx.author).animal.set(name)
         await ctx.send(f"Your animals are now called {name}s.")
+    
+    @evolution.command()
+    async def collect(self, ctx):
+        """Collect the money that your animals have made."""
+
+        line = random.choice(self.utils.lines)
+
+        await bank.deposit_credits(ctx.author, await self.conf.user(ctx.author).amountToCollect())
+        embed = discord.Embed(
+            colour=discord.Color.green(), description=line.format(amount=str(await self.conf.user(ctx.author).amountToCollect()) + " credits", animal=await self.conf.user(ctx.author).animal()), timestamp=ctx.message.created_at
+        )
+        embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=embed)
+        await self.conf.user(ctx.author).amountToCollect.set(0)
+    
+    @evolution.command()
+    async def autocollect(self, ctx, value: bool):
+        """Turn automatic collection on or off."""
+
+        await self.conf.user(ctx.author).autoCollect.set(value)
+        await ctx.send(f"Automatic collection has been set to {value}.")
 
     @stash.command()
     async def view(self, ctx):

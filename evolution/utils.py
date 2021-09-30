@@ -94,6 +94,44 @@ class EvolutionUtils:
         }
 
     @property
+    def lines(self):
+        return [
+            "Your {animal}s work in the mines for {amount}.",
+            "Your {animal}s all get jobs as professional lap{animal}s and earn {amount}.",
+            "Your {animal}s enlist in the military and win a war against another country, earning you {amount}.",
+            "Who knew {animal}s were so cute? Apparently not a random rich person on the street. They give you {amount}.",
+            "Apparently {animal}s make for good blackmailers. {amount}.",
+            "Your {animal}s steal from random people on the street, earning {amount}.",
+            "Your {animal}s work as a comedian and earn {amount}",
+            "Your {animal}s scavenge a local garbage dump and find {amount} worth of scrap.",
+            "Your {animal}s and their mariachi band play music at a wedding. {amount}",
+            "Your {animal}s spent an 8 hour shift walking around in 10 inch heels and a nice dress handing out flyers to rude customers. Their feet are killing they, and they can't wait to get that dress off. At least they got paid {amount} for it.",
+            "Your {animal}s work as an iceberg mover and earn {amount}",
+            "Your {animal}s baked some nice cookies for all, here is {amount}",
+            "Your {animal}s help clean up the local theater. Your {animal}s find {amount} strewn about between the seats!",
+            "Your {animal}s got cloned for science. Your {animal}s earned {amount}",
+            "Your {animal}s work as a voice actor for Spongebob and managed to gain {amount}",
+            "Your {animal}s work as a director of sand bags and earn {amount}",
+            "Your {animal}s didn’t go to work, but they got their paycheck of {amount} anyway.",
+            "Your {animal}s take their pets for a walk and gain {amount}",
+            "Taxes collected! Your {animal}s have gained {amount}",
+            "Your {animal}s work as a sandwich artist and earn {amount}",
+            "Your {animal}s work as a bush pruner for Donald Trump and earn {amount}",
+            "Your {animal}s did some social work for a good cause ! Your {animal}s recieved {amount} for their contributions !",
+            "Your {animal}s work as a bounty hunter and earn {amount}",
+            "Your {animal}s drive women to the store for {amount}",
+            "Your {animal}s dabbed so hard that even their mother is proud! Your {animal}s make {amount} off of donations.",
+            "Your {animal}s didn’t go to work, but they got their paycheck of {amount} anyway.",
+            "Your {animal}s work as a helpdesk technician and earn {amount}",
+            "Your {animal}s work as a plus sized model and earn {amount}",
+            "Your {animal}s worked as a businessman and earned {amount}",
+            "Your {animal}s found  {amount} on the floor.",
+            "Your {animal}s defended an old lady from robbers. Your {animal}s got a smooch on the cheek and earned {amount}",
+            "Your {animal}s found  {amount} on the floor.",
+            "Your {animal}s work as a voice actor for Spongebob and managed to gain {amount}",
+        ]
+
+    @property
     def randlvl_chances(self):
         return [
             1,
@@ -190,6 +228,8 @@ class EvolutionUtils:
             "multiplier": 1.0,
             "bought": {},
             "stash": {"animals": {}, "perks": {}},
+            "amountToCollect": 0,
+            "autoCollect": False
         }
         default_guild = {"cartchannel": 0, "last": 0}
         default_global = {

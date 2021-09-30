@@ -66,15 +66,18 @@ class EvolutionTaskManager:
             max_credits = await bank.get_max_balance()
             async with users.all() as new_data:
                 for user_id, userdata in bulk_edit.items():
-                    if str(user_id) not in new_data:
-                        new_data[str(user_id)] = {"balance": userdata}
-                        continue
-                    if new_data[str(user_id)]["balance"] + userdata > max_credits:
-                        new_data[str(user_id)]["balance"] = int(max_credits)
+                    if await self.conf.user_from_id(user_id).autoCollect():
+                        if str(user_id) not in new_data:
+                            new_data[str(user_id)] = {"balance": userdata}
+                            continue
+                        if new_data[str(user_id)]["balance"] + userdata > max_credits:
+                            new_data[str(user_id)]["balance"] = int(max_credits)
+                        else:
+                            new_data[str(user_id)]["balance"] = int(
+                                new_data[str(user_id)]["balance"] + userdata
+                            )
                     else:
-                        new_data[str(user_id)]["balance"] = int(
-                            new_data[str(user_id)]["balance"] + userdata
-                        )
+                        await self.conf.user_from_id(user_id).amountToCollect.set((await self.conf.user_from_id(user_id).amountToCollect()) + userdata)
 
             await self.cog.conf.lastcredited.set(await self.process_times(ct, lastcredited))
             await asyncio.sleep(60)
