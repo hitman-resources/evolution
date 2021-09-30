@@ -463,6 +463,14 @@ class Evolution(commands.Cog):
     async def collect(self, ctx):
         """Collect the money that your animals have made."""
 
+        if int(await self.conf.user(ctx.author).amountToCollect()) == 0:
+            embed = discord.Embed(
+                colour=discord.Color.green(), description="nothing", timestamp=ctx.message.created_at
+            )
+            embed.set_author(name="what the dog doin", icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
+            return
+
         line = random.choice(self.utils.lines)
 
         await bank.deposit_credits(ctx.author, int(await self.conf.user(ctx.author).amountToCollect()))
