@@ -465,9 +465,9 @@ class Evolution(commands.Cog):
 
         line = random.choice(self.utils.lines)
 
-        await bank.deposit_credits(ctx.author, await self.conf.user(ctx.author).amountToCollect())
+        await bank.deposit_credits(ctx.author, int(await self.conf.user(ctx.author).amountToCollect()))
         embed = discord.Embed(
-            colour=discord.Color.green(), description=line.format(amount=str(await self.conf.user(ctx.author).amountToCollect()) + " credits", animal=await self.conf.user(ctx.author).animal()), timestamp=ctx.message.created_at
+            colour=discord.Color.green(), description=line.format(amount=str(int(await self.conf.user(ctx.author).amountToCollect())) + " credits", animal=await self.conf.user(ctx.author).animal()), timestamp=ctx.message.created_at
         )
         embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
