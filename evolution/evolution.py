@@ -467,7 +467,7 @@ class Evolution(commands.Cog):
             embed = discord.Embed(
                 colour=discord.Color.green(), description="nothing", timestamp=ctx.message.created_at
             )
-            embed.set_author(name="what the dog doin", icon_url=ctx.author.avatar_url)
+            embed.set_author(name=f"what the {animal} doin", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
             return
 
