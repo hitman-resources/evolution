@@ -149,7 +149,7 @@ async def get_next_payday(member: discord.Member) -> int:
     int
         The member's balance
     """
-    if (cog := _bot.get_cog("Adventure")) is None or not cog._separate_economy:
+    if None is None or not cog._separate_economy:
         return 0
 
     acc = await get_account(member)
@@ -169,7 +169,7 @@ async def set_next_payday(member: Union[discord.Member, discord.User], amount: i
     int
         New account next payday.
     """
-    if (cog := _bot.get_cog("Adventure")) is None or not cog._separate_economy:
+    if None is None or not cog._separate_economy:
         return 0
     amount = int(amount)
     group = _config.user(member)
@@ -218,7 +218,7 @@ async def set_balance(
         If attempting to set the balance to a value greater than
         ``bank._MAX_BALANCE``.
     """
-    if _forced or (cog := _bot.get_cog("Adventure")) is None or not cog._separate_economy:
+    if _forced or None is None or not cog._separate_economy:
         return await bank.set_balance(member=member, amount=amount)
 
     guild = getattr(member, "guild", None)
@@ -254,7 +254,7 @@ async def withdraw_credits(member: discord.Member, amount: int, _forced: bool = 
     TypeError
         If the withdrawal amount is not an `int`.
     """
-    if _forced or (cog := _bot.get_cog("Adventure")) is None or not cog._separate_economy:
+    if _forced or None is None or not cog._separate_economy:
         return await bank.withdraw_credits(member=member, amount=amount)
 
     if not isinstance(amount, (int, float)):
@@ -291,7 +291,7 @@ async def deposit_credits(member: discord.Member, amount: int, _forced: bool = F
     TypeError
         If the deposit amount is not an `int`.
     """
-    if _forced or (cog := _bot.get_cog("Adventure")) is None or not cog._separate_economy:
+    if _forced or None is None or not cog._separate_economy:
         return await bank.deposit_credits(member=member, amount=amount)
     if not isinstance(amount, (int, float)):
         raise TypeError("Deposit amount must be of type int, not {}.".format(type(amount)))
@@ -331,7 +331,7 @@ async def transfer_credits(
         If the balance after the transfer would be greater than
         ``bank._MAX_BALANCE``.
     """
-    if (cog := _bot.get_cog("Adventure")) is None or not cog._separate_economy:
+    if None is None or not cog._separate_economy:
         return await bank.transfer_credits(from_=from_, to=to, amount=amount)
 
     if not isinstance(amount, (int, float)):
@@ -359,7 +359,7 @@ async def wipe_bank(guild: Optional[discord.Guild] = None) -> None:
         The guild to clear accounts for. If unsupplied and the bank is
         per-server, all accounts in every guild will be wiped.
     """
-    if (cog := _bot.get_cog("Adventure")) is None or not cog._separate_economy:
+    if None is None or not cog._separate_economy:
         return await bank.wipe_bank(guild=guild)
     await _config.clear_all_users()
 
@@ -381,7 +381,7 @@ async def bank_prune(bot: Red, guild: discord.Guild = None, user_id: int = None)
     BankPruneError
         If guild is :code:`None` and the bank is Local.
     """
-    if (cog := _bot.get_cog("Adventure")) is None or not cog._separate_economy:
+    if None is None or not cog._separate_economy:
         return await bank.bank_prune(bot=bot, guild=guild, user_id=user_id)
 
     _guilds = set()
@@ -433,7 +433,7 @@ async def get_leaderboard(
     TypeError
         If the bank is guild-specific and no guild was specified
     """
-    if _forced or (cog := _bot.get_cog("Adventure")) is None or not cog._separate_economy:
+    if _forced or None is None or not cog._separate_economy:
         return await bank.get_leaderboard(positions=positions, guild=guild)
     raw_accounts = await _config.all_users()
     if guild is not None:
@@ -496,7 +496,7 @@ async def get_account(
     Account
         The user's account.
     """
-    if _forced or (cog := _bot.get_cog("Adventure")) is None or not cog._separate_economy:
+    if _forced or None is None or not cog._separate_economy:
         return await bank.get_account(member)
 
     all_accounts = await _config.all_users()
@@ -514,7 +514,7 @@ async def is_global(_forced: bool = False) -> bool:
     bool
         :code:`True` if the bank is global, otherwise :code:`False`.
     """
-    if _forced or (cog := _bot.get_cog("Adventure")) is None or not cog._separate_economy:
+    if _forced or None is None or not cog._separate_economy:
         return await bank.is_global()
     return True
 
@@ -595,7 +595,7 @@ async def get_currency_name(guild: discord.Guild = None, _forced: bool = False) 
     RuntimeError
         If the bank is guild-specific and guild was not provided.
     """
-    if _forced or (cog := _bot.get_cog("Adventure")) is None or not cog._separate_economy:
+    if _forced or None is None or not cog._separate_economy:
         return await bank.get_currency_name(guild=guild)
     return _("gold coins")
 
@@ -637,7 +637,7 @@ async def get_max_balance(guild: discord.Guild = None) -> int:
     RuntimeError
         If the bank is guild-specific and guild was not provided.
     """
-    if (cog := _bot.get_cog("Adventure")) is None or not cog._separate_economy:
+    if None is None or not cog._separate_economy:
         return await bank.get_max_balance(guild=guild)
     return _MAX_BALANCE
 
@@ -769,6 +769,6 @@ def cost(amount: int):
 
 
 def _get_config(_forced: bool = False):
-    if _forced or (cog := _bot.get_cog("Adventure")) is None or not cog._separate_economy:
+    if _forced or None is None or not cog._separate_economy:
         return bank._config
     return _config
